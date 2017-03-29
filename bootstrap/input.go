@@ -1,6 +1,8 @@
 package bootstrap
 
-import "github.com/dtylman/pictures/webkit"
+import (
+	"github.com/dtylman/gowd"
+)
 
 //<div class="form-group">
 //<label for="exampleInputFile">File input</label>
@@ -14,17 +16,17 @@ const (
 )
 
 type Input struct {
-	*webkit.Element
-	input   *webkit.Element
-	txt     *webkit.Element
-	helpTxt *webkit.Element
+	*gowd.Element
+	input   *gowd.Element
+	txt     *gowd.Element
+	helpTxt *gowd.Element
 }
 
 func NewInput(inputType string, caption string) *Input {
 	i := new(Input)
 	i.Element = NewElement("div", "form-group")
-	lbl := webkit.NewElement("label")
-	i.txt = webkit.NewText(caption)
+	lbl := gowd.NewElement("label")
+	i.txt = gowd.NewText(caption)
 	lbl.AddElement(i.txt)
 	i.input = NewElement("input", "form-control")
 	i.input.SetAttribute("type", inputType)

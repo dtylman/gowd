@@ -1,7 +1,7 @@
 package bootstrap
 
 import (
-	"github.com/dtylman/pictures/webkit"
+	"github.com/dtylman/gowd"
 )
 
 //<div class="checkbox">
@@ -11,22 +11,22 @@ import (
 //</div>
 
 type Checkbox struct {
-	*webkit.Element
-	chkbox *webkit.Element
-	txt    *webkit.Element
+	*gowd.Element
+	chkbox *gowd.Element
+	txt    *gowd.Element
 }
 
 func NewCheckBox(caption string, checked bool) *Checkbox {
 	cb := new(Checkbox)
 	cb.Element = NewElement("div", "checkbox")
-	lbl := webkit.NewElement("label")
-	cb.chkbox = webkit.NewElement("input")
+	lbl := gowd.NewElement("label")
+	cb.chkbox = gowd.NewElement("input")
 	cb.chkbox.SetAttribute("type", "checkbox")
 	if checked {
 		cb.chkbox.SetAttribute("checked", "")
 	}
 	lbl.AddElement(cb.chkbox)
-	cb.txt = webkit.NewText(caption)
+	cb.txt = gowd.NewText(caption)
 	lbl.AddElement(cb.txt)
 	lbl.SetAttribute("for", cb.chkbox.GetID())
 	cb.Element.AddElement(lbl)

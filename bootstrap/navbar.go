@@ -1,6 +1,8 @@
 package bootstrap
 
-import "github.com/dtylman/pictures/webkit"
+import (
+	"github.com/dtylman/gowd"
+)
 
 /*
 <nav class="navbar navbar-default">
@@ -24,9 +26,9 @@ import "github.com/dtylman/pictures/webkit"
 
 */
 type Navbar struct {
-	*webkit.Element
-	ul          *webkit.Element
-	navElements []*webkit.Element
+	*gowd.Element
+	ul          *gowd.Element
+	navElements []*gowd.Element
 }
 
 func NewNavBar() *Navbar {
@@ -36,24 +38,24 @@ func NewNavBar() *Navbar {
 	div := NewElement("div", "container-fluid")
 	div.AddElement(nb.ul)
 	nb.Element.AddElement(div)
-	nb.navElements = make([]*webkit.Element, 0)
+	nb.navElements = make([]*gowd.Element, 0)
 	return nb
 }
 
-func (nb *Navbar) AddNavElement(elem *webkit.Element) {
-	li := webkit.NewElement("li")
+func (nb *Navbar) AddNavElement(elem *gowd.Element) {
+	li := gowd.NewElement("li")
 	li.AddElement(elem)
 	nb.ul.AddElement(li)
 	nb.navElements = append(nb.navElements, elem)
 }
 
-func (nb *Navbar) AddLinkButton(caption string) *webkit.Element {
+func (nb *Navbar) AddLinkButton(caption string) *gowd.Element {
 	btn := NewLinkButton(caption)
 	nb.AddNavElement(btn)
 	return btn
 }
 
-func (nb *Navbar) AddButton(buttonType string, caption string) *webkit.Element {
+func (nb *Navbar) AddButton(buttonType string, caption string) *gowd.Element {
 	btn := NewButton(buttonType + " navbar-btn", caption)
 	nb.AddNavElement(btn)
 	return btn
@@ -65,7 +67,7 @@ func (nb *Navbar) AddSeperator() {
 	nb.ul.AddElement(li)
 }
 
-func (nb*Navbar) SetActiveElement(elem*webkit.Element) {
+func (nb*Navbar) SetActiveElement(elem*gowd.Element) {
 	for i := range nb.navElements {
 		nb.navElements[i].UnsetClass("active")
 	}

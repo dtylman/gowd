@@ -3,8 +3,8 @@ package bootstrap
 import (
 	"errors"
 	"fmt"
-	"github.com/dtylman/pictures/webkit"
 	"strconv"
+	"github.com/dtylman/gowd"
 )
 
 //<div class="progress">
@@ -14,9 +14,9 @@ import (
 //</div>
 
 type ProgressBar struct {
-	*webkit.Element
-	bar *webkit.Element
-	txt *webkit.Element
+	*gowd.Element
+	bar *gowd.Element
+	txt *gowd.Element
 }
 
 func NewProgressBar() *ProgressBar {
@@ -26,7 +26,7 @@ func NewProgressBar() *ProgressBar {
 	progress.bar.SetAttribute("role", "progressbar")
 	progress.bar.SetAttribute("aria-valuemin", "0")
 	progress.bar.SetAttribute("aria-valuemax", "100")
-	progress.txt = webkit.NewText("")
+	progress.txt = gowd.NewText("")
 	progress.bar.AddElement(progress.txt)
 	progress.AddElement(progress.bar)
 	return progress

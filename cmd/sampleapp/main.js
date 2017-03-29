@@ -1,7 +1,7 @@
 
 var child;
 var fails = 0;
-var goBinary = "edit here!!";
+var goBinary = "sampleapp"; //or sampleapp.exe
 
 function body_message(msg){    
     document.body.innerHTML = '<h1>'+msg+'</h1>';        
@@ -56,7 +56,7 @@ function element_as_object(elem){
     for (var j=0;j<elem.attributes.length;j++){
         obj.properties[elem.attributes[j].name]=elem.attributes[j].value;         
     }
-    //overwrite attribtues with proeprties
+    //overwrite attributes with properties
     if (elem.value!=null){
         obj.properties["value"]=elem.value.toString();
     }

@@ -1,7 +1,7 @@
 package bootstrap
 
 import (
-	"github.com/dtylman/pictures/webkit"
+	"github.com/dtylman/gowd"
 )
 
 const (
@@ -9,15 +9,15 @@ const (
 	ButtonPrimary = "btn-primary"
 )
 
-func NewButton(buttontype string, caption string) *webkit.Element {
-	btn := NewElement("button", "btn "+buttontype)
+func NewButton(buttontype string, caption string) *gowd.Element {
+	btn := NewElement("button", "btn " + buttontype)
 	btn.SetText(caption)
 	return btn
 }
 
-func NewLinkButton(caption string) *webkit.Element {
-	linkBtn := webkit.NewElement("a")
+func NewLinkButton(caption string) *gowd.Element {
+	linkBtn := gowd.NewElement("a")
 	linkBtn.SetAttribute("href", "#")
-	linkBtn.AddElement(webkit.NewText(caption))
+	linkBtn.AddElement(gowd.NewText(caption))
 	return linkBtn
 }

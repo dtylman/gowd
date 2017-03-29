@@ -1,6 +1,8 @@
 package bootstrap
 
-import "github.com/dtylman/pictures/webkit"
+import (
+	"github.com/dtylman/gowd"
+)
 
 /*
 <div class="panel panel-default">
@@ -18,9 +20,9 @@ const (
 )
 
 type Panel struct {
-	*webkit.Element
-	heading *webkit.Element
-	body    *webkit.Element
+	*gowd.Element
+	heading *gowd.Element
+	body    *gowd.Element
 }
 
 func NewPanel(panelType string) *Panel {
@@ -31,20 +33,20 @@ func NewPanel(panelType string) *Panel {
 	return p
 }
 
-func (p*Panel) AddElement(elem*webkit.Element) {
+func (p*Panel) AddElement(elem*gowd.Element) {
 	p.AddBody(elem)
 }
 
-func (p*Panel)AddBody(elem *webkit.Element) {
+func (p*Panel)AddBody(elem *gowd.Element) {
 	p.body.AddElement(elem)
 }
 
-func (p*Panel) AddHeading(elem*webkit.Element) {
+func (p*Panel) AddHeading(elem*gowd.Element) {
 	p.heading.AddElement(elem)
 }
 
 func (p*Panel) AddTitle(title string) {
-	txt := webkit.NewStyledText(title, webkit.Heading3)
+	txt := gowd.NewStyledText(title, gowd.Heading3)
 	txt.SetClass("panel-title")
 	p.AddHeading(txt)
 }

@@ -1,4 +1,4 @@
-package webkit
+package gowd
 
 type EventElement struct {
 	Properties map[string]string `json:"properties"`

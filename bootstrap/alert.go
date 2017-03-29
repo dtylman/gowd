@@ -1,7 +1,7 @@
 package bootstrap
 
 import (
-	"github.com/dtylman/pictures/webkit"
+	"github.com/dtylman/gowd"
 )
 
 /*
@@ -13,33 +13,33 @@ import (
 
 const (
 	AlertSuccess = "alert-success"
-	AlertInfo    = "alert-info"
+	AlertInfo = "alert-info"
 	AlertWarning = "alert-warning"
-	AlertDanger  = "alert-danger"
+	AlertDanger = "alert-danger"
 )
 
-func NewAlert(title string, caption string, alertType string, dismissible bool) *webkit.Element {
+func NewAlert(title string, caption string, alertType string, dismissible bool) *gowd.Element {
 	alertClass := "alert " + alertType
 	alert := NewElement("div", alertClass)
 	alert.SetAttribute("role", "alert")
 	if dismissible {
-		span := webkit.NewElement("span")
+		span := gowd.NewElement("span")
 		span.SetAttribute("aria-hidden", "true")
 		span.SetText("X")
 		btn := NewElement("button", "close")
 		btn.SetAttribute("type", "button")
-		btn.OnEvent(webkit.OnClick, alertClose)
+		btn.OnEvent(gowd.OnClick, alertClose)
 		btn.AddElement(span)
 		alert.AddElement(btn)
 	}
 	if title != "" {
-		alert.AddElement(webkit.NewStyledText(title+" ", webkit.StrongText))
+		alert.AddElement(gowd.NewStyledText(title + " ", gowd.StrongText))
 	}
-	alert.AddElement(webkit.NewText(caption))
+	alert.AddElement(gowd.NewText(caption))
 	return alert
 }
 
-func alertClose(sender *webkit.Element, event *webkit.EventElement) {
+func alertClose(sender *gowd.Element, event *gowd.EventElement) {
 	//remove this alert
 	if sender != nil {
 		//the button

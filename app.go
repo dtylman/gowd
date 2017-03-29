@@ -1,4 +1,4 @@
-package webkit
+package gowd
 
 import (
 	"crypto/md5"
