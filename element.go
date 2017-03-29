@@ -77,6 +77,7 @@ func (e *Element) SetText(text string) {
 	if e.nodeType == html.TextNode {
 		e.data = text
 	} else {
+		e.RemoveElements()
 		e.AddElement(NewText(text))
 	}
 }

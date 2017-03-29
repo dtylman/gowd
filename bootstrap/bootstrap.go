@@ -23,9 +23,9 @@ func NewRow() *gowd.Element {
 }
 
 const (
-	ColumnLarge = "col-lg-"
-	ColumnMedium = "col-md-"
-	ColumnSmall = "col-sm-"
+	ColumnLarge = "col-lg"
+	ColumnMedium = "col-md"
+	ColumnSmall = "col-sm"
 	ColumnXtraSmall = "col-xs"
 )
 
