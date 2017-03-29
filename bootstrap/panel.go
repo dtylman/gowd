@@ -30,11 +30,9 @@ func NewPanel(panelType string) *Panel {
 	p.Element = NewElement("div", "panel " + panelType)
 	p.heading = NewElement("div", "panel-heading")
 	p.body = NewElement("div", "panel-body")
+	p.AddElement(p.heading)
+	p.AddElement(p.body)
 	return p
-}
-
-func (p*Panel) AddElement(elem*gowd.Element) {
-	p.AddBody(elem)
 }
 
 func (p*Panel)AddBody(elem *gowd.Element) {

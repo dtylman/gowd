@@ -1,7 +1,7 @@
 
 var child;
 var fails = 0;
-var goBinary = "sampleapp"; //or sampleapp.exe
+var goBinary = "./sampleapp"; //or sampleapp.exe
 
 function body_message(msg){    
     document.body.innerHTML = '<h1>'+msg+'</h1>';        
@@ -41,12 +41,12 @@ function start_process() {
 function restart_process(){
     setTimeout(function () {
             fails++;
-            if (fails > 3) {
+            if (fails > 5) {
                 close();
             } else {
                 start_process();
             }
-        }, 1000);
+        }, 5000);
 }
 
 function element_as_object(elem){
