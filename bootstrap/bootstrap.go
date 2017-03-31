@@ -7,7 +7,9 @@ import (
 
 func NewElement(tag, class string) *gowd.Element {
 	elem := gowd.NewElement(tag)
-	elem.SetAttribute("class", class)
+	if class != "" {
+		elem.SetAttribute("class", class)
+	}
 	return elem
 }
 
