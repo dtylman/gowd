@@ -22,11 +22,11 @@ func newBody() *body {
 	pnl := bootstrap.NewPanel(bootstrap.PanelDefault)
 	pnl.AddTitle("Title")
 	b.txt = gowd.NewStyledText("Hello world", gowd.Heading1)
-	pnl.AddBody(b.txt)
+	pnl.AddToBody(b.txt)
 	b.AddElement(pnl.Element)
 
 	for i := 0; i < 3; i++ {
-		input := bootstrap.NewInput(bootstrap.InputTypeText, fmt.Sprintf("Question %v:", i))
+		input := bootstrap.NewFormInput(bootstrap.InputTypeText, fmt.Sprintf("Question %v:", i))
 		input.OnEvent(gowd.OnChange, b.inputChanged)
 		b.AddElement(input.Element)
 	}

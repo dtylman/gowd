@@ -35,16 +35,16 @@ func NewPanel(panelType string) *Panel {
 	return p
 }
 
-func (p*Panel)AddBody(elem *gowd.Element) {
+func (p*Panel)AddToBody(elem *gowd.Element) {
 	p.body.AddElement(elem)
 }
 
-func (p*Panel) AddHeading(elem*gowd.Element) {
+func (p*Panel) AddToHeading(elem*gowd.Element) {
 	p.heading.AddElement(elem)
 }
 
 func (p*Panel) AddTitle(title string) {
 	txt := gowd.NewStyledText(title, gowd.Heading3)
 	txt.SetClass("panel-title")
-	p.AddHeading(txt)
+	p.AddToHeading(txt)
 }

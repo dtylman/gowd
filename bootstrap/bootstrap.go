@@ -5,23 +5,30 @@ import (
 	"github.com/dtylman/gowd"
 )
 
-func NewElement(tag, class string) *gowd.Element {
+func NewElement(tag, class string, kids ...*gowd.Element) *gowd.Element {
 	elem := gowd.NewElement(tag)
 	if class != "" {
 		elem.SetAttribute("class", class)
 	}
+	for _, kid := range kids {
+		elem.AddElement(kid)
+	}
 	return elem
 }
 
-func NewContainer(fluid bool) *gowd.Element {
+func NewContainer(fluid bool, kids ...*gowd.Element) *gowd.Element {
 	if fluid {
-		return NewElement("div", "container-fluid")
+		return NewElement("div", "container-fluid", kids...)
 	}
-	return NewElement("div", "container")
+	return NewElement("div", "container", kids...)
 }
 
-func NewRow() *gowd.Element {
-	return NewElement("div", "row")
+func NewFormGroup(elems ...*gowd.Element) *gowd.Element {
+	return NewElement("div", "form-group", elems...)
+}
+
+func NewRow(elems ...*gowd.Element) *gowd.Element {
+	return NewElement("div", "row", elems...)
 }
 
 const (

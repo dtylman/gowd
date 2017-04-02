@@ -23,54 +23,29 @@ import (
 
   </div><!-- /.container-fluid -->
 </nav>
-
 */
+
+const NavbarDefault = "navbar-default"
+
 type Navbar struct {
 	*gowd.Element
-	ul          *gowd.Element
-	navElements []*gowd.Element
+	Lists     []*List
+	container *gowd.Element
 }
 
-func NewNavBar() *Navbar {
+func NewNavBar(navbarType string) *Navbar {
 	nb := &Navbar{}
-	nb.ul = NewElement("ul", "nav navbar-nav")
-	nb.Element = NewElement("nav", "navbar navbar-default")
-	div := NewElement("div", "container-fluid")
-	div.AddElement(nb.ul)
-	nb.Element.AddElement(div)
-	nb.navElements = make([]*gowd.Element, 0)
+	nb.Element = NewElement("nav", navbarType)
+	nb.container = NewContainer(true)
+	nb.Element.AddElement(nb.container)
+	nb.Lists = make([]*List, 0)
 	return nb
 }
 
-func (nb *Navbar) AddNavElement(elem *gowd.Element) {
-	li := gowd.NewElement("li")
-	li.AddElement(elem)
-	nb.ul.AddElement(li)
-	nb.navElements = append(nb.navElements, elem)
-}
+func (nb*Navbar) AddList() *List {
+	list := NewList(ListUnordered, "nav navbar-nav nav-pills")
+	nb.Lists = append(nb.Lists, list)
+	nb.container.AddElement(list.Element)
 
-func (nb *Navbar) AddLinkButton(caption string) *gowd.Element {
-	btn := NewLinkButton(caption)
-	nb.AddNavElement(btn)
-	return btn
-}
-
-func (nb *Navbar) AddButton(buttonType string, caption string) *gowd.Element {
-	btn := NewButton(buttonType + " navbar-btn", caption)
-	nb.AddNavElement(btn)
-	return btn
-}
-
-func (nb *Navbar) AddSeperator() {
-	li := NewElement("li", "divider")
-	li.SetAttribute("role", "seperator")
-	nb.ul.AddElement(li)
-}
-
-func (nb*Navbar) SetActiveElement(elem*gowd.Element) {
-	for i := range nb.navElements {
-		nb.navElements[i].UnsetClass("active")
-	}
-	elem.SetClass("active")
-
+	return list
 }
