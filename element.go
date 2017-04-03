@@ -175,6 +175,11 @@ func (e *Element) Find(id string) *Element {
 	return nil
 }
 
+func (e*Element) OnKeyPressEvent(event string, keyCode int, handler EventHandler) {
+	e.SetAttribute(event, fmt.Sprintf(`fire_keypressed_event(event,%d,'%s',this);`, keyCode, event))
+	e.eventHandlers[event] = handler
+}
+
 func (e *Element) OnEvent(event string, handler EventHandler) {
 	e.SetAttribute(event, fmt.Sprintf(`fire_event('%s',this);`, event))
 	e.eventHandlers[event] = handler

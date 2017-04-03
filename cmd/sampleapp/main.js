@@ -1,10 +1,19 @@
-
 var child;
 var fails = 0;
 var goBinary = "./sampleapp"; //or sampleapp.exe
 
+function setPage(html){
+    const container = document.getElementById("app");
+    app.innerHTML = html;
+    //set focus for autofocus element
+    var elem = document.querySelector("input[autofocus]");
+    if (elem!=null){
+        elem.focus();
+    }
+}
+
 function body_message(msg){    
-    document.body.innerHTML = '<h1>'+msg+'</h1>';        
+    setPage('<h1>'+msg+'</h1>');
 }
 
 function start_process() {
@@ -20,7 +29,7 @@ function start_process() {
 
     rl.on('line', (data) => {        
         console.log(`Received: ${data}`);
-        document.body.innerHTML = data;
+        setPage(data);        
     });
 
     child.stderr.on('data', (data) => {
@@ -85,6 +94,13 @@ function fire_event(name, sender){
     }    
     child.stdin.write(JSON.stringify(msg));
     console.log(JSON.stringify(msg));
+}
+
+function fire_keypressed_event(e,keycode,name,sender){
+     if(e.keyCode === keycode){
+            e.preventDefault(); 
+            fire_event(name,sender);
+        }
 }
 
 function avoid_reload(){

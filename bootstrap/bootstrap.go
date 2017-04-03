@@ -38,6 +38,6 @@ const (
 	ColumnXtraSmall = "col-xs"
 )
 
-func NewColumn(size string, span int) *gowd.Element {
-	return NewElement("div", fmt.Sprintf("%s-%d", size, span))
+func NewColumn(size string, span int, elems...*gowd.Element) *gowd.Element {
+	return NewElement("div", fmt.Sprintf("%s-%d", size, span), elems...)
 }

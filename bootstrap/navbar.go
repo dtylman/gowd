@@ -43,7 +43,7 @@ func NewNavBar(navbarType string) *Navbar {
 }
 
 func (nb*Navbar) AddList() *List {
-	list := NewList(ListUnordered, "nav navbar-nav nav-pills")
+	list := NewList(ListUnordered, "nav navbar-nav")
 	nb.Lists = append(nb.Lists, list)
 	nb.container.AddElement(list.Element)
 

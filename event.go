@@ -15,6 +15,7 @@ type EventHandler func(sender *Element, event *EventElement)
 const (
 	OnClick  = "onclick"
 	OnChange = "onchange"
+	OnKeyPress = "onkeypress"
 )
 
 func (e *EventElement) GetID() string {

@@ -43,8 +43,9 @@ func (p*Panel) AddToHeading(elem*gowd.Element) {
 	p.heading.AddElement(elem)
 }
 
-func (p*Panel) AddTitle(title string) {
+func (p*Panel) AddTitle(title string) *gowd.Element {
 	txt := gowd.NewStyledText(title, gowd.Heading3)
 	txt.SetClass("panel-title")
 	p.AddToHeading(txt)
+	return txt
 }
