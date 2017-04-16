@@ -71,7 +71,7 @@ func (b*body) btnStartClick(sender *gowd.Element, event *gowd.EventElement) {
 
 		for i := 0; i <= 100; i++ {
 			b.progressBar.SetText(fmt.Sprintf("Working on it (%v percent done)", i))
-			b.progressBar.SetValue(i)
+			b.progressBar.SetPercent(i)
 			time.Sleep(time.Duration(rand.Uint32() / 30))
 			b.Render()
 		}

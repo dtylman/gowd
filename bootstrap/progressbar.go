@@ -32,7 +32,14 @@ func NewProgressBar() *ProgressBar {
 	return progress
 }
 
-func (pb *ProgressBar) SetValue(percent int) error {
+func (pb* ProgressBar) SetValue(now, max int) error{
+	if max==0{
+		return pb.SetPercent(0)
+	}
+	return (pb.SetPercent(now*100/max))
+}
+
+func (pb *ProgressBar) SetPercent(percent int) error {
 	if percent < 0 || percent > 100 {
 		return errors.New("out of range")
 	}
