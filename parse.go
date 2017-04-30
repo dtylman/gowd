@@ -6,6 +6,7 @@ import (
 	"golang.org/x/net/html/atom"
 	"strings"
 	"errors"
+	"fmt"
 )
 
 //ParseElements parse an html fragment and return a list of elements
@@ -28,7 +29,7 @@ func ParseElements(r io.Reader) ([]*Element, error) {
 //NewElementFromNode creates an element from existing node
 func NewElementFromNode(node*html.Node) *Element {
 	elem := &Element{
-		data:          strings.Trim(node.Data,"\n\r\t"),
+		data:          strings.Trim(node.Data, "\n\r\t "),
 		Attributes:    node.Attr,
 		nodeType:      node.Type,
 		Kids:          make([]*Element, 0),
@@ -46,7 +47,13 @@ func ParseElement(innerHtml string) (*Element, error) {
 		return nil, err
 	}
 	if len(elems) != 1 {
-		return nil, errors.New("The provided html must yield only one html element")
+		tags := "["
+		for _, e := range elems {
+			tags += fmt.Sprintf("%v:'%s', ",e.nodeType,strings.Trim(e.data,"\t\n\r "))
+
+		}
+		tags += ")"
+		return nil, errors.New("The provided html must yield only one html element, I have: " + tags)
 	}
 	return elems[0], nil
 }
