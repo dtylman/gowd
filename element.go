@@ -59,6 +59,17 @@ func (e *Element) AddElement(elem *Element) *Element {
 	return elem
 }
 
+func (e*Element) AddHtml(innerHtml string) ([]*Element, error) {
+	elems, err := ParseElements(strings.NewReader(innerHtml))
+	if err != nil {
+		return nil, err
+	}
+	for _, elem := range elems {
+		e.Kids = append(e.Kids, elem)
+	}
+	return elems, nil
+}
+
 func (e *Element) RemoveElements() {
 	e.Kids = make([]*Element, 0)
 }
