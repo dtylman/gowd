@@ -37,3 +37,15 @@ func NewPagination() *Pagination {
 	return p
 
 }
+
+func (p* Pagination) AddItem(caption string, active bool,handler gowd.EventHandler) *gowd.Element{
+	link :=NewLinkButton(caption)
+	if handler!=nil{
+		link.OnEvent(gowd.OnClick,handler)
+	}
+	item:=p.Items.AddItem(link)
+	if active{
+		item.SetClass("active")
+	}
+	return link
+}
