@@ -14,6 +14,7 @@ func NewInputGroup(elems ...*gowd.Element) *gowd.Element {
 const (
 	InputTypeText = "text"
 	InputTypeFile = "file"
+	InputTypeCheckbox = "checkbox"
 )
 
 func NewInput(inputType string) *gowd.Element {

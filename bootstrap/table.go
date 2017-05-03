@@ -7,9 +7,9 @@ import (
 
 type Table struct {
 	*gowd.Element
-	head *gowd.Element
-	body *gowd.Element
-	rows []*gowd.Element
+	Head *gowd.Element
+	Body *gowd.Element
+	Rows []*gowd.Element
 }
 
 const TableStripped = "table-striped"
@@ -20,19 +20,26 @@ func NewTable(tableType string) *Table {
 	if tableType != "" {
 		t.Element.SetClass(tableType)
 	}
-	t.head = gowd.NewElement("thead")
-	t.AddElement(t.head)
-	t.body = gowd.NewElement("tbody")
-	t.AddElement(t.body)
-	t.rows = make([]*gowd.Element, 0)
+	t.Head = gowd.NewElement("thead")
+	t.AddElement(t.Head)
+	t.Body = gowd.NewElement("tbody")
+	t.AddElement(t.Body)
+	t.Rows = make([]*gowd.Element, 0)
 	return t
 }
 
 func (t *Table) AddRow() *gowd.Element {
 	row := gowd.NewElement("tr")
-	t.rows = append(t.rows, row)
-	t.body.AddElement(row)
+	t.Rows = append(t.Rows, row)
+	t.Body.AddElement(row)
 	return row
+}
+
+func (t* Table) AddHeader(caption string) *gowd.Element{
+	th:=gowd.NewElement("th")
+	th.AddElement(gowd.NewText(caption))
+	t.Head.AddElement(th)
+	return th
 }
 
 func (t*Table) NewCell(caption string) *gowd.Element {
