@@ -59,8 +59,8 @@ func (e *Element) AddElement(elem *Element) *Element {
 	return elem
 }
 
-func (e*Element) AddHtml(innerHtml string) ([]*Element, error) {
-	elems, err := ParseElements(strings.NewReader(innerHtml))
+func (e*Element) AddHtml(innerHtml string, em ElementsMap) ([]*Element, error) {
+	elems, err := ParseElements(strings.NewReader(innerHtml),em)
 	if err != nil {
 		return nil, err
 	}
