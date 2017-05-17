@@ -21,6 +21,8 @@ nw .
 
 Screenshot on Ubuntu:
 ![todomvc](gowd-todos.png)
+
+
 ## Resources
 
 - gowd on [github](http://github.com/dtylman/gowd) 
