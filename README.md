@@ -1,6 +1,6 @@
 # gowd
 
-Build cross platform GUI apps with GO and HTML/JS/CSS (powered by [nwjs](https://nwjs.io/)
+Build cross platform GUI apps with GO and HTML/JS/CSS (powered by [nwjs](https://nwjs.io/))
 
 Build [![CircleCI](https://circleci.com/gh/dtylman/gowd.svg?style=svg)](https://circleci.com/gh/dtylman/gowd)
 
