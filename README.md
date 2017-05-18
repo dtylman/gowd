@@ -17,7 +17,6 @@ Build [![CircleCI](https://circleci.com/gh/dtylman/gowd.svg?style=svg)](https://
 1. Run `nw .`, the hello world template should appear:
 ![hello-world](cmd/template/hello-world.png)
 
-
 ### Usage
 
 Simplest "hello world":
@@ -170,3 +169,12 @@ func btnClicked(sender *gowd.Element, event *gowd.EventElement) {
 
 }
 ```
+
+This will yield the following app:
+
+![Simple](docs/template.mkv)
+
+More a more advanced usage, see the [Todo](cmd/todomvc/readme.md) sample
+
+![TodoMVC](docs/todomvc.mkv)
+
