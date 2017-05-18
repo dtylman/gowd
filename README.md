@@ -172,9 +172,9 @@ func btnClicked(sender *gowd.Element, event *gowd.EventElement) {
 
 This will yield the following app:
 
-![Simple](docs/template.mkv)
+![Simple](docs/template.gif)
 
 More a more advanced usage, see the [Todo](cmd/todomvc/readme.md) sample
 
-![TodoMVC](docs/todomvc.mkv)
+![TodoMVC](docs/todomvc.gif)
 
