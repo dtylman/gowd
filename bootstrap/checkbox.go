@@ -10,12 +10,14 @@ import (
 //</label>
 //</div>
 
+//Checkbox represents a checkbox with label
 type Checkbox struct {
 	*gowd.Element
 	chkbox *gowd.Element
 	txt    *gowd.Element
 }
 
+//NewCheckBox creates a bootstrap checkbox with label
 func NewCheckBox(caption string, checked bool) *Checkbox {
 	cb := new(Checkbox)
 	cb.Element = NewElement("div", "checkbox")
@@ -33,6 +35,7 @@ func NewCheckBox(caption string, checked bool) *Checkbox {
 	return cb
 }
 
+//Checked is true if the checkbox is checked
 func (cb *Checkbox) Checked() bool {
 	_, exists := cb.chkbox.GetAttribute("checked")
 	return exists

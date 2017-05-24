@@ -2,18 +2,25 @@ package bootstrap
 
 import "github.com/dtylman/gowd"
 
+//ListItems a list of elements
 type ListItems []*gowd.Element
+
+//List is a struct for <ul>, <ol>, <dl>
 type List struct {
 	*gowd.Element
 	Items ListItems
 }
 
 const (
-	ListUnordered   = "ul"
-	ListOrdered     = "ol"
+	//ListUnordered is <ul>
+	ListUnordered = "ul"
+	//ListOrdered is <ol>
+	ListOrdered = "ol"
+	//DescriptionList is <dl>
 	DescriptionList = "dl"
 )
 
+//NewList creates a new list
 func NewList(listType string, class string) *List {
 	l := new(List)
 	l.Element = NewElement(listType, class)

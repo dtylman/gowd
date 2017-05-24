@@ -1,6 +1,6 @@
 package gowd
 
-//EventElement
+//EventElement represents the DOM element sending an event
 type EventElement struct {
 	Properties map[string]string `json:"properties"`
 }
@@ -16,8 +16,11 @@ type Event struct {
 type EventHandler func(sender *Element, event *EventElement)
 
 const (
-	OnClick    = "onclick"
-	OnChange   = "onchange"
+	//OnClick onclick event
+	OnClick = "onclick"
+	//OnChange onchange event
+	OnChange = "onchange"
+	//OnKeyPress onkeypress event
 	OnKeyPress = "onkeypress"
 )
 

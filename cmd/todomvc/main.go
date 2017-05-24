@@ -38,7 +38,7 @@ func newApplication() *app {
 				<h1>todos</h1>
 				<input class="new-todo" placeholder="What needs to be done?" id="inputTodo" autofocus>
 			</header>`
-	a.AddHtml(header, em)
+	a.AddHTML(header, em)
 	a.inputTodo = em["inputTodo"]
 	a.inputTodo.OnKeyPressEvent(gowd.OnKeyPress, 13, a.inputTodoEnter)
 
@@ -48,7 +48,7 @@ func newApplication() *app {
 				<ul class="todo-list" id="todoList">
 				</ul>
 			</section>`
-	a.AddHtml(main, em)
+	a.AddHTML(main, em)
 	a.todoList = em["todoList"]
 	em["toggle-all"].OnEvent(gowd.OnClick, a.btnToggleAllClicked)
 
@@ -67,7 +67,7 @@ func newApplication() *app {
 				</ul>
 				<button class="clear-completed" id="clearCompleted" >Clear completed</button>
 			</footer>`
-	a.AddHtml(footer, em)
+	a.AddHTML(footer, em)
 	a.todocount = em["todocount"]
 	a.btnClearCompleted = em["clearCompleted"]
 	a.btnClearCompleted.OnEvent(gowd.OnClick, a.btnClearCompletedClicked)
@@ -138,7 +138,7 @@ func (a *app) updateList() {
 		item = item + "s"
 	}
 	a.todocount.RemoveElements()
-	a.todocount.AddHtml(fmt.Sprintf(`<strong>%d </strong> %s left`, total, item), nil)
+	a.todocount.AddHTML(fmt.Sprintf(`<strong>%d </strong> %s left`, total, item), nil)
 }
 
 func (a *app) btnRemoveClicked(sender *gowd.Element, event *gowd.EventElement) {

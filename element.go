@@ -11,7 +11,7 @@ import (
 var (
 	//Order counts the number of elements rendered (for generating auto-ids)
 	Order int
-	//Ouput output render target (configurable for unit-tests)
+	//Output output render target (configurable for unit-tests)
 	Output io.Writer = os.Stdout
 )
 
@@ -69,11 +69,11 @@ func (e *Element) AddElement(elem *Element) *Element {
 	return elem
 }
 
-//AddHtml parses the provided element and adds it to the current element. Returns a list of root elements from `html`.
+//AddHTML parses the provided element and adds it to the current element. Returns a list of root elements from `html`.
 //If em is not nil, for each HTML tag that has the `id` attribute set the corresponding element will be stored in the
 //given ElementMap.
-func (e *Element) AddHtml(innerHtml string, em ElementsMap) ([]*Element, error) {
-	elems, err := ParseElements(strings.NewReader(innerHtml), em)
+func (e *Element) AddHTML(innerHTML string, em ElementsMap) ([]*Element, error) {
+	elems, err := ParseElements(strings.NewReader(innerHTML), em)
 	if err != nil {
 		return nil, err
 	}

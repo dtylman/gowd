@@ -5,10 +5,13 @@ import (
 )
 
 const (
+	//ButtonDefault default bootstrap button
 	ButtonDefault = "btn-default"
+	//ButtonPrimary primary bootstrap button
 	ButtonPrimary = "btn-primary"
 )
 
+//NewButton creates a new bootstrap <button> element
 func NewButton(buttontype string, caption string) *gowd.Element {
 	btn := NewElement("button", "btn "+buttontype)
 	if caption != "" {
@@ -17,6 +20,7 @@ func NewButton(buttontype string, caption string) *gowd.Element {
 	return btn
 }
 
+//NewLinkButton creates a new bootstrap link button (<a>)
 func NewLinkButton(caption string) *gowd.Element {
 	linkBtn := gowd.NewElement("a")
 	linkBtn.SetAttribute("href", "#")

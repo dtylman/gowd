@@ -53,8 +53,8 @@ func NewElementFromNode(node *html.Node, em ElementsMap) *Element {
 }
 
 //ParseElement parses an html with only one root tag, returns the root element.
-func ParseElement(innerHtml string, em ElementsMap) (*Element, error) {
-	elems, err := ParseElements(strings.NewReader(innerHtml), em)
+func ParseElement(innerHTML string, em ElementsMap) (*Element, error) {
+	elems, err := ParseElements(strings.NewReader(innerHTML), em)
 	if err != nil {
 		return nil, err
 	}

@@ -13,12 +13,14 @@ import (
 //</div>
 //</div>
 
+//ProgressBar represents bootstrap progress-bar element
 type ProgressBar struct {
 	*gowd.Element
 	bar *gowd.Element
 	txt *gowd.Element
 }
 
+//NewProgressBar creates new bootstrap progress bar element
 func NewProgressBar() *ProgressBar {
 	progress := new(ProgressBar)
 	progress.Element = NewElement("div", "progress")
@@ -32,6 +34,7 @@ func NewProgressBar() *ProgressBar {
 	return progress
 }
 
+//SetValue sets the progress value of the progress bar
 func (pb *ProgressBar) SetValue(now, max int) error {
 	if max == 0 {
 		return pb.SetPercent(0)
@@ -39,6 +42,7 @@ func (pb *ProgressBar) SetValue(now, max int) error {
 	return (pb.SetPercent(now * 100 / max))
 }
 
+//SetPercent sets the value of the progress bar as a percentage
 func (pb *ProgressBar) SetPercent(percent int) error {
 	if percent < 0 || percent > 100 {
 		return errors.New("out of range")
@@ -48,6 +52,7 @@ func (pb *ProgressBar) SetPercent(percent int) error {
 	return nil
 }
 
+//SetText sets the progress bar's caption
 func (pb *ProgressBar) SetText(caption string) {
 	pb.txt.SetText(caption)
 }

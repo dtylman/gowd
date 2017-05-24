@@ -25,11 +25,13 @@ import "github.com/dtylman/gowd"
 </nav>
 */
 
+//Pagination is bootstrap pagination element
 type Pagination struct {
 	*gowd.Element
 	Items *List
 }
 
+//NewPagination creates new bootstrap pagination element
 func NewPagination() *Pagination {
 	p := new(Pagination)
 	p.Element = gowd.NewElement("nav")
@@ -39,6 +41,7 @@ func NewPagination() *Pagination {
 
 }
 
+//AddItem adds page to the pagination
 func (p *Pagination) AddItem(caption string, active bool, handler gowd.EventHandler) *gowd.Element {
 	link := NewLinkButton(caption)
 	if handler != nil {

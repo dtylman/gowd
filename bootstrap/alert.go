@@ -12,10 +12,14 @@ import (
 */
 
 const (
+	//AlertSuccess ...
 	AlertSuccess = "alert-success"
-	AlertInfo    = "alert-info"
+	//AlertInfo ...
+	AlertInfo = "alert-info"
+	//AlertWarning ...
 	AlertWarning = "alert-warning"
-	AlertDanger  = "alert-danger"
+	//AlertDanger ..
+	AlertDanger = "alert-danger"
 )
 
 //NewAlert returns new bootstrap alert
