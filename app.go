@@ -5,15 +5,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"golang.org/x/net/html"
+	"io"
 	"os"
 	"reflect"
 	"sync"
-	"time"
 )
 
 var renderMutex sync.Mutex
 
-func render(e *Element) error {
+func render(e *Element, w io.Writer) error {
 	node := e.toNode()
 	h := md5.New()
 	err := html.Render(h, node)
@@ -27,14 +27,15 @@ func render(e *Element) error {
 	e.renderHash = sum
 	renderMutex.Lock()
 	defer renderMutex.Unlock()
-	err = html.Render(os.Stdout, node)
+	err = html.Render(w, node)
 	if err != nil {
 		return err
 	}
-	_, err = fmt.Println()
+	_, err = fmt.Fprintln(w)
 	return err
 }
 
+//Run starts the message loop with body as the root element. This function never exits.
 func Run(body *Element) error {
 	for true {
 		body.Render()
@@ -51,9 +52,4 @@ func Run(body *Element) error {
 		body.ProcessEvent(&event)
 	}
 	return nil
-}
-
-func Error(err error) {
-	fmt.Println("Error: ", err.Error())
-	time.Sleep(3 * time.Second)
 }

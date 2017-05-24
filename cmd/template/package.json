@@ -3,9 +3,9 @@
   "main": "index.html",
   "single-instance": true,
   "window": {
-    "position": "center",    
-    "width": 1500,
-    "height": 900,
+    "position": "center",
+    "width": 600,
+    "height": 400,
     "frame" : true
   },
   "webkit": {

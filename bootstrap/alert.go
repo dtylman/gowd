@@ -13,11 +13,12 @@ import (
 
 const (
 	AlertSuccess = "alert-success"
-	AlertInfo = "alert-info"
+	AlertInfo    = "alert-info"
 	AlertWarning = "alert-warning"
-	AlertDanger = "alert-danger"
+	AlertDanger  = "alert-danger"
 )
 
+//NewAlert returns new bootstrap alert
 func NewAlert(title string, caption string, alertType string, dismissible bool) *gowd.Element {
 	alertClass := "alert " + alertType
 	alert := NewElement("div", alertClass)
@@ -33,7 +34,7 @@ func NewAlert(title string, caption string, alertType string, dismissible bool) 
 		alert.AddElement(btn)
 	}
 	if title != "" {
-		alert.AddElement(gowd.NewStyledText(title + " ", gowd.StrongText))
+		alert.AddElement(gowd.NewStyledText(title+" ", gowd.StrongText))
 	}
 	alert.AddElement(gowd.NewText(caption))
 	return alert

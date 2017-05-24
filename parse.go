@@ -1,17 +1,19 @@
 package gowd
 
 import (
-	"io"
-	"golang.org/x/net/html"
-	"golang.org/x/net/html/atom"
-	"strings"
 	"errors"
 	"fmt"
+	"golang.org/x/net/html"
+	"golang.org/x/net/html/atom"
+	"io"
+	"strings"
 )
 
+//ElementsMap maps Elements by their `id` attributes
 type ElementsMap map[string]*Element
 
-func NewElementMap() ElementsMap{
+//NewElementMap creates a new ElementMap
+func NewElementMap() ElementsMap {
 	return make(ElementsMap)
 }
 
@@ -27,13 +29,13 @@ func ParseElements(r io.Reader, em ElementsMap) ([]*Element, error) {
 	}
 	elems := make([]*Element, 0)
 	for _, node := range nodes {
-		elems = append(elems, NewElementFromNode(node,em))
+		elems = append(elems, NewElementFromNode(node, em))
 	}
 	return elems, nil
 }
 
 //NewElementFromNode creates an element from existing node
-func NewElementFromNode(node*html.Node, em ElementsMap) *Element {
+func NewElementFromNode(node *html.Node, em ElementsMap) *Element {
 	elem := &Element{
 		data:          strings.Trim(node.Data, "\n\r\t "),
 		Attributes:    node.Attr,
@@ -41,24 +43,25 @@ func NewElementFromNode(node*html.Node, em ElementsMap) *Element {
 		Kids:          make([]*Element, 0),
 		eventHandlers: make(map[string]EventHandler),
 	}
-	if em!=nil && elem.GetID()!=""{
-		em[elem.GetID()]=elem
+	if em != nil && elem.GetID() != "" {
+		em[elem.GetID()] = elem
 	}
 	for c := node.FirstChild; c != nil; c = c.NextSibling {
-		elem.AddElement(NewElementFromNode(c,em));
+		elem.AddElement(NewElementFromNode(c, em))
 	}
 	return elem
 }
 
+//ParseElement parses an html with only one root tag, returns the root element.
 func ParseElement(innerHtml string, em ElementsMap) (*Element, error) {
-	elems, err := ParseElements(strings.NewReader(innerHtml),em)
+	elems, err := ParseElements(strings.NewReader(innerHtml), em)
 	if err != nil {
 		return nil, err
 	}
 	if len(elems) != 1 {
 		tags := "["
 		for _, e := range elems {
-			tags += fmt.Sprintf("%v:'%s', ",e.nodeType,strings.Trim(e.data,"\t\n\r "))
+			tags += fmt.Sprintf("%v:'%s', ", e.nodeType, strings.Trim(e.data, "\t\n\r "))
 
 		}
 		tags += ")"
