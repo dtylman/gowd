@@ -1,8 +1,8 @@
 package bootstrap
 
 import (
-	"github.com/dtylman/gowd"
 	"fmt"
+	"github.com/dtylman/gowd"
 )
 
 type TableRow struct {
@@ -39,7 +39,7 @@ func (t *Table) AddRow() *TableRow {
 	return row
 }
 
-func (t*Table) AddHeader(caption string) *gowd.Element {
+func (t *Table) AddHeader(caption string) *gowd.Element {
 	th := gowd.NewElement("th")
 	th.AddElement(gowd.NewText(caption))
 	t.Head.AddElement(th)
@@ -68,7 +68,7 @@ func NewTableRow() *TableRow {
 	return tr
 }
 
-func (tr*TableRow) AddCells(cells...string) {
+func (tr *TableRow) AddCells(cells ...string) {
 	for _, cell := range cells {
 		tr.AddElement(NewCell(cell))
 	}

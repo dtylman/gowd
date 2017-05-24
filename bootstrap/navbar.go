@@ -42,7 +42,7 @@ func NewNavBar(navbarType string) *Navbar {
 	return nb
 }
 
-func (nb*Navbar) AddList() *List {
+func (nb *Navbar) AddList() *List {
 	list := NewList(ListUnordered, "nav navbar-nav")
 	nb.Lists = append(nb.Lists, list)
 	nb.container.AddElement(list.Element)

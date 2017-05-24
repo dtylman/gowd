@@ -13,7 +13,7 @@ import (
     Panel content
   </div>
 </div>
- */
+*/
 
 const (
 	PanelDefault = "panel-default"
@@ -27,7 +27,7 @@ type Panel struct {
 
 func NewPanel(panelType string) *Panel {
 	p := new(Panel)
-	p.Element = NewElement("div", "panel " + panelType)
+	p.Element = NewElement("div", "panel "+panelType)
 	p.Heading = NewElement("div", "panel-heading")
 	p.Body = NewElement("div", "panel-body")
 	p.AddElement(p.Heading)
@@ -35,15 +35,15 @@ func NewPanel(panelType string) *Panel {
 	return p
 }
 
-func (p*Panel)AddToBody(elem *gowd.Element) {
+func (p *Panel) AddToBody(elem *gowd.Element) {
 	p.Body.AddElement(elem)
 }
 
-func (p*Panel) AddToHeading(elem*gowd.Element) {
+func (p *Panel) AddToHeading(elem *gowd.Element) {
 	p.Heading.AddElement(elem)
 }
 
-func (p*Panel) AddTitle(title string) *gowd.Element {
+func (p *Panel) AddTitle(title string) *gowd.Element {
 	txt := gowd.NewStyledText(title, gowd.Heading3)
 	txt.SetClass("panel-title")
 	p.AddToHeading(txt)

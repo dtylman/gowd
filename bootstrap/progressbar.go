@@ -3,8 +3,8 @@ package bootstrap
 import (
 	"errors"
 	"fmt"
-	"strconv"
 	"github.com/dtylman/gowd"
+	"strconv"
 )
 
 //<div class="progress">
@@ -32,11 +32,11 @@ func NewProgressBar() *ProgressBar {
 	return progress
 }
 
-func (pb* ProgressBar) SetValue(now, max int) error{
-	if max==0{
+func (pb *ProgressBar) SetValue(now, max int) error {
+	if max == 0 {
 		return pb.SetPercent(0)
 	}
-	return (pb.SetPercent(now*100/max))
+	return (pb.SetPercent(now * 100 / max))
 }
 
 func (pb *ProgressBar) SetPercent(percent int) error {

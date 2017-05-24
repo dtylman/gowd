@@ -1,6 +1,7 @@
 package bootstrap
 
 import "github.com/dtylman/gowd"
+
 /*
 
 <nav aria-label="Page navigation">
@@ -22,7 +23,7 @@ import "github.com/dtylman/gowd"
     </li>
   </ul>
 </nav>
- */
+*/
 
 type Pagination struct {
 	*gowd.Element
@@ -38,13 +39,13 @@ func NewPagination() *Pagination {
 
 }
 
-func (p* Pagination) AddItem(caption string, active bool,handler gowd.EventHandler) *gowd.Element{
-	link :=NewLinkButton(caption)
-	if handler!=nil{
-		link.OnEvent(gowd.OnClick,handler)
+func (p *Pagination) AddItem(caption string, active bool, handler gowd.EventHandler) *gowd.Element {
+	link := NewLinkButton(caption)
+	if handler != nil {
+		link.OnEvent(gowd.OnClick, handler)
 	}
-	item:=p.Items.AddItem(link)
-	if active{
+	item := p.Items.AddItem(link)
+	if active {
 		item.SetClass("active")
 	}
 	return link

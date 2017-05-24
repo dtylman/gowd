@@ -10,7 +10,7 @@ const (
 )
 
 func NewButton(buttontype string, caption string) *gowd.Element {
-	btn := NewElement("button", "btn " + buttontype)
+	btn := NewElement("button", "btn "+buttontype)
 	if caption != "" {
 		btn.SetText(caption)
 	}

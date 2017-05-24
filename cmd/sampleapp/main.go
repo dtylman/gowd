@@ -1,11 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"github.com/dtylman/gowd"
 	"github.com/dtylman/gowd/bootstrap"
-	"fmt"
-	"time"
 	"math/rand"
+	"time"
 )
 
 type body struct {
@@ -58,7 +58,7 @@ func newBody() *body {
 	return b
 }
 
-func (b*body) btnStartClick(sender *gowd.Element, event *gowd.EventElement) {
+func (b *body) btnStartClick(sender *gowd.Element, event *gowd.EventElement) {
 	b.AddElement(bootstrap.NewAlert("Started!", fmt.Sprintf("Started on %v", time.Now()), bootstrap.AlertInfo, true))
 	go func() {
 		b.btnStart.Disable()
@@ -78,7 +78,7 @@ func (b*body) btnStartClick(sender *gowd.Element, event *gowd.EventElement) {
 	}()
 }
 
-func (b*body) inputChanged(sender *gowd.Element, event *gowd.EventElement) {
+func (b *body) inputChanged(sender *gowd.Element, event *gowd.EventElement) {
 	b.txt.SetText(fmt.Sprintf("Text from %v: %v", sender.GetID(), sender.Parent.GetValue()))
 }
 

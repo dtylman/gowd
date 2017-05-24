@@ -9,8 +9,8 @@ type List struct {
 }
 
 const (
-	ListUnordered = "ul"
-	ListOrdered = "ol"
+	ListUnordered   = "ul"
+	ListOrdered     = "ol"
 	DescriptionList = "dl"
 )
 
@@ -22,7 +22,7 @@ func NewList(listType string, class string) *List {
 }
 
 //AddItem creates new LI, adds the elem to the li and returns the li to the caller.
-func (l*List) AddItem(elem*gowd.Element) *gowd.Element {
+func (l *List) AddItem(elem *gowd.Element) *gowd.Element {
 	item := gowd.NewElement("li")
 	item.AddElement(elem)
 	l.AddElement(item)
