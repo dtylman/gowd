@@ -2,7 +2,9 @@
 
 Build cross platform GUI apps with GO and HTML/JS/CSS (powered by [nwjs](https://nwjs.io/))
 
-Build [![CircleCI](https://circleci.com/gh/dtylman/gowd.svg?style=svg)](https://circleci.com/gh/dtylman/gowd)
+[![CircleCI](https://circleci.com/gh/dtylman/gowd.svg?style=svg)](https://circleci.com/gh/dtylman/gowd)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dtylman/gowd)](https://goreportcard.com/report/github.com/dtylman/gowd)
+[![GoDoc](https://godoc.org/github.com/dtylman/gowd?status.svg)](http://godoc.org/github.com/dtylman/gowd)
 
 ### How to use this library:
 
