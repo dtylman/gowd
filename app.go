@@ -35,21 +35,28 @@ func render(e *Element, w io.Writer) error {
 	return err
 }
 
+func processEvents(e *Element, r io.Reader) error {
+	decoder := json.NewDecoder(r)
+	var event Event
+	err := decoder.Decode(&event)
+	if err != nil {
+		return err
+	}
+	e.ProcessEvent(&event)
+	return nil
+}
+
 //Run starts the message loop with body as the root element. This function never exits.
 func Run(body *Element) error {
 	for true {
-		body.Render()
 		err := body.Render()
 		if err != nil {
 			return err
 		}
-		decoder := json.NewDecoder(os.Stdin)
-		var event Event
-		err = decoder.Decode(&event)
+		err = processEvents(body, os.Stdin)
 		if err != nil {
 			return err
 		}
-		body.ProcessEvent(&event)
 	}
 	return nil
 }
