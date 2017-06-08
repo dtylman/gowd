@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 func TestRun(t *testing.T) {
@@ -28,4 +29,24 @@ func Test_ProcessEvent(t *testing.T) {
 	jsEvent := `{"name":"onclick","sender":{"properties":{"id":"_div12"}},"inputs":[]}`
 	err := processEvents(elem, bytes.NewBufferString(jsEvent))
 	assert.NoError(t, err)
+}
+
+func Test_Run(t *testing.T) {
+	elem := NewElement("div")
+	waitTime := time.Millisecond * 750
+	startTime := time.Now()
+	go func() {
+		err := Run(elem)
+		assert.EqualError(t, err, "EOF")
+	}()
+	time.Sleep(waitTime)
+	totalTime := time.Now().Sub(startTime)
+	assert.True(t, totalTime >= waitTime)
+}
+
+func TestError(t *testing.T) {
+	elem := NewElement("div")
+	elem.nodeType = 123
+	err := Run(elem)
+	assert.Error(t, err)
 }
