@@ -16,19 +16,57 @@ func TestRun(t *testing.T) {
 	assert.Equal(t, expected+"\n", output.String())
 }
 
-func Test_ProcessEvent(t *testing.T) {
-	elem := NewElement("input")
-	elem.SetAttribute("value", "text")
-	elem.SetID("_div12")
-	elem.OnEvent("onclick", func(sender *Element, event *EventElement) {
-		assert.EqualValues(t, sender.GetID(), "_div12")
-		assert.EqualValues(t, event.GetID(), "_div12")
-		assert.EqualValues(t, sender.GetValue(), "text")
-		assert.EqualValues(t, event.GetValue(), "")
+func TestElement_ProcessEvent(t *testing.T) {
+	em := NewElementMap()
+	elem, err := ParseElement(`<div><input id="input" type="text" value="lala"><btn id="button"></div>`, em)
+	if err != nil {
+		t.Fatal(err)
+	}
+	input := em["input"]
+	assert.EqualValues(t, input.GetValue(), "lala")
+	em["button"].OnEvent("onclick", func(sender *Element, event *EventElement) {
+		assert.EqualValues(t, sender.GetID(), "button")
+		assert.EqualValues(t, input.GetValue(), "shalom")
 	})
-	jsEvent := `{"name":"onclick","sender":{"properties":{"id":"_div12"}},"inputs":[]}`
-	err := processEvents(elem, bytes.NewBufferString(jsEvent))
-	assert.NoError(t, err)
+	testOuput(t, elem, `<div><input id="input" type="text" value="lala"/><btn id="button" onclick="fire_event(&#39;onclick&#39;,this);"></btn></div>`)
+	jsEvent := `
+	{
+	   "name":"onclick",
+	   "sender":{
+	      "properties":{
+		 "id":"button"
+	      }
+	   },
+	   "inputs":[
+	      {
+		 "properties":{
+		    "id":"input",
+		    "type":"text",
+		    "value":"shalom"
+		 }
+	      },
+	      {
+		 "properties":{
+		    "id":"_input14",
+		    "type":"text",
+		    "value":""EqualValues(t, )
+		 }
+	      },
+	      {
+		 "properties":{
+		    "id":"button",
+		    "class":"klass"
+		 }
+	      }
+	   ]
+	}`
+	err = processEvents(elem, bytes.NewBufferString(jsEvent))
+	if err != nil {
+		t.Fatal(err)
+	}
+	class, found := elem.Find("button").GetAttribute("class")
+	assert.EqualValues(t, class, "klass")
+	assert.True(t, found)
 }
 
 func Test_Run(t *testing.T) {
