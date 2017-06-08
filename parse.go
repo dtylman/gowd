@@ -64,7 +64,7 @@ func ParseElement(innerHTML string, em ElementsMap) (*Element, error) {
 			tags += fmt.Sprintf("%v:'%s', ", e.nodeType, strings.Trim(e.data, "\t\n\r "))
 
 		}
-		tags += ")"
+		tags += "]"
 		return nil, errors.New("The provided html must yield only one html element, I have: " + tags)
 	}
 	return elems[0], nil

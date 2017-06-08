@@ -49,7 +49,7 @@ func TestElement_ProcessEvent(t *testing.T) {
 		 "properties":{
 		    "id":"_input14",
 		    "type":"text",
-		    "value":""EqualValues(t, )
+		    "value":""
 		 }
 	      },
 	      {

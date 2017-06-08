@@ -16,12 +16,11 @@ func testOuput(t *testing.T, elem *Element, expected string) {
 
 func TestParseElement(t *testing.T) {
 	em := NewElementMap()
-	elem, err := ParseElement(`<div id='div'><b id='text'>text</b><button id="btn" value="lala"/></div>`, em)
-	if err != nil {
-		t.Fatal(err)
-	}
-	assert.Equal(t, elem, em["div"])
-	assert.EqualValues(t, "lala", em["btn"].GetValue())
+	elem, err := ParseElement(`<br/><p/><div></div>`, em)
+	assert.EqualError(t, err, `The provided html must yield only one html element, I have: [3:'br', 3:'p', 3:'div', ]`)
+	assert.Nil(t, elem)
+	elem, err = ParseElement("", nil)
+	assert.EqualError(t, err, "The provided html must yield only one html element, I have: []")
 }
 
 func TestParseElement2(t *testing.T) {
