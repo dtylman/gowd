@@ -14,6 +14,9 @@ import (
 var renderMutex sync.Mutex
 
 func render(e *Element, w io.Writer) error {
+	renderMutex.Lock()
+	defer renderMutex.Unlock()
+
 	node := e.toNode()
 	h := md5.New()
 	err := html.Render(h, node)
@@ -25,8 +28,7 @@ func render(e *Element, w io.Writer) error {
 		return nil //already rendered
 	}
 	e.renderHash = sum
-	renderMutex.Lock()
-	defer renderMutex.Unlock()
+
 	err = html.Render(w, node)
 	if err != nil {
 		return err
