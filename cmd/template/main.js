@@ -90,8 +90,8 @@ function fire_event(name, sender){
     var msg = {
         name : name, 
         sender : element_as_object(sender),
-        inputs : element_by_tag_as_array("input")
-    }    
+        inputs : element_by_tag_as_array("input").concat(element_by_tag_as_array("select"))
+    }
     child.stdin.write(JSON.stringify(msg));
     console.log(JSON.stringify(msg));
 }

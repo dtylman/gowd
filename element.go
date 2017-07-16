@@ -3,6 +3,7 @@ package gowd
 import (
 	"fmt"
 	"golang.org/x/net/html"
+	"golang.org/x/net/html/atom"
 	"io"
 	"os"
 	"strings"
@@ -261,6 +262,16 @@ func (e *Element) updateState(elementID string, input *EventElement) {
 	}
 	if e.GetID() == elementID {
 		e.SetAttributes(input)
+	}
+	//special cases:
+	if e.data == atom.Select.String() {
+		for i := range e.Kids {
+			if e.Kids[i].GetValue() == e.GetValue() {
+				e.Kids[i].SetAttribute("selected", "true")
+			} else {
+				e.Kids[i].RemoveAttribute("selected")
+			}
+		}
 	}
 }
 
