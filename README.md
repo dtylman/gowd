@@ -9,6 +9,7 @@ Build cross platform GUI apps with GO and HTML/JS/CSS (powered by [nwjs](https:/
 ### How to use this library:
 
 1. Download and install [nwjs](https://nwjs.io/)
+1. Install this library `go get github.com/dtylman/gowd`
 1. Clone this repo.
 1. Place `package.json`, `index.html`, `main.go` and `main.js` from [template](cmd/template/) in a new folder. 
 1. `go build`
