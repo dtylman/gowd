@@ -79,7 +79,7 @@ func (b *body) btnStartClick(sender *gowd.Element, event *gowd.EventElement) {
 }
 
 func (b *body) inputChanged(sender *gowd.Element, event *gowd.EventElement) {
-	b.txt.SetText(fmt.Sprintf("Text from %v: %v", sender.GetID(), sender.Parent.GetValue()))
+	b.txt.SetText(fmt.Sprintf("Text from %v: %v", sender.GetID(), sender.Kids[1].GetValue()))
 }
 
 func main() {
