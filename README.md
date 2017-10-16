@@ -126,7 +126,7 @@ func main() {
 	row := bootstrap.NewRow(bootstrap.NewColumn(bootstrap.ColumnLarge, 6, div))
 	body.AddElement(row)
 	// add some other elements from HTML
-	div.AddHtml(`<div class="dropdown">
+	div.AddHTML(`<div class="dropdown">
 	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
 	<span class="caret"></span></button>
 	<ul class="dropdown-menu" id="dropdown-menu">
