@@ -4,14 +4,16 @@ import (
 	"crypto/md5"
 	"encoding/json"
 	"fmt"
-	"golang.org/x/net/html"
 	"io"
 	"os"
 	"reflect"
 	"sync"
+
+	"golang.org/x/net/html"
 )
 
 var renderMutex sync.Mutex
+var execJSBuffer []string
 
 func render(e *Element, w io.Writer) error {
 	renderMutex.Lock()
@@ -34,6 +36,9 @@ func render(e *Element, w io.Writer) error {
 		return err
 	}
 	_, err = fmt.Fprintln(w)
+	for _, value := range execJSBuffer {
+		fmt.Fprintf(os.Stdout, "$%s\n", value)
+	}
 	return err
 }
 
@@ -61,4 +66,14 @@ func Run(body *Element) error {
 		}
 	}
 	return nil
+}
+
+//ExecJS executes JS code after a DOM update from gowd
+func ExecJS(js string) {
+	execJSBuffer = append(execJSBuffer, js)
+}
+
+//ExecJSNow Executes JS code in NWJS without waiting for a DOM update to be finished.
+func ExecJSNow(js string) {
+	execJSBuffer = append(execJSBuffer, js)
 }
