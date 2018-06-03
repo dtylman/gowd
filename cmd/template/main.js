@@ -17,7 +17,7 @@ function body_message(msg){
 }
 
 function start_process() {
-     body_message("Loading...");
+    body_message("Loading...");
 
     const spawn = require('child_process').spawn;
     child = spawn(goBinary,{maxBuffer:1024*500});
@@ -27,9 +27,15 @@ function start_process() {
         input: child.stdout
     })
 
-    rl.on('line', (data) => {        
-        console.log(`Received: ${data}`);
-        setPage(data);        
+	rl.on('line', (data) => {        
+		console.log(`Received: ${data}`);
+		
+        if (data.charAt(0) == "$") {
+            data = data.substr(1);
+            eval(data)
+        } else {
+            setPage(data);
+        }
     });
 
     child.stderr.on('data', (data) => {
