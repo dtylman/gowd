@@ -75,5 +75,5 @@ func ExecJS(js string) {
 
 //ExecJSNow Executes JS code in NWJS without waiting for a DOM update to be finished.
 func ExecJSNow(js string) {
-	execJSBuffer = append(execJSBuffer, js)
+	fmt.Fprintf(os.Stdout, "$%s\n", js)
 }
