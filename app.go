@@ -37,7 +37,7 @@ func render(e *Element, w io.Writer) error {
 	}
 	_, err = fmt.Fprintln(w)
 	for _, value := range execJSBuffer {
-		fmt.Fprintf(os.Stdout, "$%s\n", value)
+		ExecJSNow(value)
 	}
 	return err
 }
@@ -75,5 +75,5 @@ func ExecJS(js string) {
 
 //ExecJSNow Executes JS code in NWJS without waiting for a DOM update to be finished.
 func ExecJSNow(js string) {
-	fmt.Fprintf(os.Stdout, "$%s\n", js)
+	fmt.Fprintf(Output, "$%s\n", js)
 }
