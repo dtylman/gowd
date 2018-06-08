@@ -39,6 +39,7 @@ func render(e *Element, w io.Writer) error {
 	for _, value := range execJSBuffer {
 		ExecJSNow(value)
 	}
+	execJSBuffer = execJSBuffer[:0]
 	return err
 }
 
