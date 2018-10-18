@@ -1,9 +1,10 @@
 package gowd
 
 import (
-	"github.com/stretchr/testify/assert"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestElement_SetAttributes(t *testing.T) {
@@ -61,4 +62,19 @@ func TestElement_Hide(t *testing.T) {
 	testOuput(t, elem, "<div><p id=\"text\">Show me!!</p></div>")
 	elem.RemoveElement(p)
 	testOuput(t, elem, "<div></div>")
+}
+
+func TestElement_SetValue(t *testing.T) {
+	elem := NewElement("div")
+	elem.SetValue("hoho")
+	assert.Equal(t, "hoho", elem.GetValue())
+	testOuput(t, elem, "<div id=\"_div1\" value=\"hoho\"></div>")
+}
+
+func TestElement_AutoFocus(t *testing.T) {
+	elem := NewElement("div")
+	_, exists := elem.GetAttribute("autofocus")
+	assert.False(t, exists)
+	elem.AutoFocus()
+	testOuput(t, elem, "<div id=\"_div1\" autofocus=\"\"></div>")
 }

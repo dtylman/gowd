@@ -178,6 +178,11 @@ func (e *Element) GetID() string {
 	return val
 }
 
+//SetValue sets the 'value' attribute
+func (e *Element) SetValue(val string) {
+	e.SetAttribute("value", val)
+}
+
 //SetID sets the `id` attribute
 func (e *Element) SetID(id string) {
 	e.SetAttribute("id", id)
@@ -193,6 +198,11 @@ func (e *Element) Enable() {
 	e.RemoveAttribute("disabled")
 }
 
+//AutoFocus adds the auto-focus atribute to the element
+func (e *Element) AutoFocus() {
+	e.SetAttribute("autofocus", "")
+}
+
 //Hide if set, will not render the element.
 func (e *Element) Hide() {
 	e.Hidden = true
@@ -203,7 +213,7 @@ func (e *Element) Show() {
 	e.Hidden = false
 }
 
-//Find  returns the kid, or offspring with a specific `id` attribute value.
+//Find returns the kid, or offspring with a specific `id` attribute value.
 func (e *Element) Find(id string) *Element {
 	if e.GetID() == id {
 		return e
