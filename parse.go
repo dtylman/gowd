@@ -3,10 +3,11 @@ package gowd
 import (
 	"errors"
 	"fmt"
-	"golang.org/x/net/html"
-	"golang.org/x/net/html/atom"
 	"io"
 	"strings"
+
+	"golang.org/x/net/html"
+	"golang.org/x/net/html/atom"
 )
 
 //ElementsMap maps Elements by their `id` attributes
@@ -34,10 +35,22 @@ func ParseElements(r io.Reader, em ElementsMap) ([]*Element, error) {
 	return elems, nil
 }
 
+func stripchars(input string, chars ...rune) string {
+	return strings.Map(
+		func(r rune) rune {
+			for _, c := range chars {
+				if c == r {
+					return -1
+				}
+			}
+			return r
+		}, input)
+}
+
 //NewElementFromNode creates an element from existing node
 func NewElementFromNode(node *html.Node, em ElementsMap) *Element {
 	elem := &Element{
-		data:          strings.Trim(node.Data, "\n\r\t "),
+		data:          strings.Trim(stripchars(node.Data, '\r', '\n'), "\r\n\t "),
 		Attributes:    node.Attr,
 		nodeType:      node.Type,
 		Kids:          make([]*Element, 0),
