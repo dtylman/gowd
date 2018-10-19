@@ -34,6 +34,6 @@ func TestAlert(t *testing.T) {
 	elem := NewElement("hello world")
 	elem.SetID("_hello world1")
 	render(elem, Output)
-	assert.Equal(t, `<hello world id="_hello world1"></hello world>`+"\n"+`$alert("this  is all the testing possible without running NWJS, hope itl do'");`+"\n", buf.String())
+	assert.Equal(t, "$alert(\"this  is all the testing possible without running NWJS, hope itl do'\");\n<hello world id=\"_hello world1\"></hello world>\n", buf.String())
 	Output = os.Stdout
 }
