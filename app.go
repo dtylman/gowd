@@ -68,13 +68,3 @@ func Run(body *Element) error {
 	}
 	return nil
 }
-
-//ExecJS executes JS code after a DOM update from gowd
-func ExecJS(js string) {
-	execJSBuffer = append(execJSBuffer, js)
-}
-
-//ExecJSNow Executes JS code in NWJS without waiting for a DOM update to be finished.
-func ExecJSNow(js string) {
-	fmt.Fprintf(Output, "$%s\n", js)
-}
