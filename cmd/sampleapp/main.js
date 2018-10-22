@@ -1,3 +1,5 @@
+var os = require('os');
+
 var child;
 var fails = 0;
 var goBinary = "./sampleapp"; //or sampleapp.exe

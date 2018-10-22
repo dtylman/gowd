@@ -1,3 +1,4 @@
+var os = require('os');
 var child;
 var fails = 0;
 var goBinary = "./template"; //or template.exe
