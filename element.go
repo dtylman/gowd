@@ -104,7 +104,7 @@ func (e *Element) RemoveElement(elem *Element) {
 //SetText Sets the element to hold ONLY the provided text
 func (e *Element) SetText(text string) {
 	if e.nodeType == html.TextNode {
-		e.data = text
+		e.data = elementText(text)
 	} else {
 		e.RemoveElements()
 		e.AddElement(NewText(text))
