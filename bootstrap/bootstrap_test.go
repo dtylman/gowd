@@ -1,10 +1,10 @@
 package bootstrap
 
 import (
-	"github.com/dtylman/gowd"
+	"bytes"
 	"testing"
 
-	"bytes"
+	"github.com/dtylman/gowd"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -18,7 +18,7 @@ func testOuput(t *testing.T, elem *gowd.Element, expected string) {
 
 func TestNewAlert(t *testing.T) {
 	alert := NewAlert("alert", "lala", AlertInfo, true)
-	expected := `<div id="_div1" class="alert alert-info" role="alert"><button id="_button3" class="close" type="button" onclick="fire_event(&#39;onclick&#39;,this);"><span id="_span2" aria-hidden="true">X</span></button><strong id="_strong4">alert </strong>lala</div>`
+	expected := `<div id="_div1" class="alert alert-info" role="alert"><button id="_button3" class="close" type="button" onclick="fire_event(&#39;onclick&#39;,this);"><span id="_span2" aria-hidden="true">X</span></button><strong id="_strong4">alert</strong>lala</div>`
 	testOuput(t, alert, expected)
 }
 

@@ -43,7 +43,7 @@ const (
 
 //NewText creates new text node (without HTML tag)
 func NewText(text string) *Element {
-	return &Element{nodeType: html.TextNode, data: text}
+	return &Element{nodeType: html.TextNode, data: elementText(text)}
 }
 
 //NewStyledText creates new text element using a specific style

@@ -301,3 +301,21 @@ func (e *Element) fireEvent(eventName string, senderID string, sender *EventElem
 		}
 	}
 }
+
+//stripchars strips chars from a string
+func stripchars(input string, chars ...rune) string {
+	return strings.Map(
+		func(r rune) rune {
+			for _, c := range chars {
+				if c == r {
+					return -1
+				}
+			}
+			return r
+		}, input)
+}
+
+//make sure there are no CRLF in the input
+func elementText(input string) string {
+	return strings.Trim(stripchars(input, '\r', '\n'), "\r\n\t ")
+}

@@ -35,22 +35,10 @@ func ParseElements(r io.Reader, em ElementsMap) ([]*Element, error) {
 	return elems, nil
 }
 
-func stripchars(input string, chars ...rune) string {
-	return strings.Map(
-		func(r rune) rune {
-			for _, c := range chars {
-				if c == r {
-					return -1
-				}
-			}
-			return r
-		}, input)
-}
-
 //NewElementFromNode creates an element from existing node
 func NewElementFromNode(node *html.Node, em ElementsMap) *Element {
 	elem := &Element{
-		data:          strings.Trim(stripchars(node.Data, '\r', '\n'), "\r\n\t "),
+		data:          elementText(node.Data),
 		Attributes:    node.Attr,
 		nodeType:      node.Type,
 		Kids:          make([]*Element, 0),
