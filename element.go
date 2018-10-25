@@ -61,6 +61,12 @@ func (e *Element) SetAttributes(event *EventElement) {
 	}
 }
 
+//SetElement removes all child elemens and adds elem as first child
+func (e *Element) SetElement(elem *Element) *Element {
+	e.RemoveElements()
+	return e.AddElement(elem)
+}
+
 //AddElement adds a child element
 func (e *Element) AddElement(elem *Element) *Element {
 	if elem == nil {

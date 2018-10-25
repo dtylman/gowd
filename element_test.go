@@ -78,3 +78,15 @@ func TestElement_AutoFocus(t *testing.T) {
 	elem.AutoFocus()
 	testOuput(t, elem, "<div id=\"_div1\" autofocus=\"\"></div>")
 }
+
+func TestElement_SetElement(t *testing.T) {
+	elem := NewElement("div")
+	assert.Empty(t, elem.Kids)
+	for i := 0; i < 10; i++ {
+		elem.AddElement(NewElement("p"))
+	}
+	assert.Equal(t, 10, len(elem.Kids))
+	elem.SetElement(NewElement("a"))
+	assert.Equal(t, 1, len(elem.Kids))
+	assert.Equal(t, "a", elem.Kids[0].data)
+}
