@@ -2,8 +2,11 @@ package gowd
 
 import (
 	"bytes"
-	"github.com/stretchr/testify/assert"
+	"io/ioutil"
+	"os"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func testOuput(t *testing.T, elem *Element, expected string) {
@@ -38,4 +41,26 @@ func TestParseElement2(t *testing.T) {
 	assert.NotNil(t, p)
 	assert.EqualValues(t, em["myP"].data, p[0].data)
 
+}
+
+func TestParseElementFromFile(t *testing.T) {
+	f, err := ioutil.TempFile(os.TempDir(), "gowd_test")
+	if err != nil {
+		t.Fatal(err)
+	}
+	_, err = f.WriteString(`<div id="myDiv"><h1>My First Heading</h1><p>My first paragraph.</p></div>`)
+	if err != nil {
+		t.Fatal(err)
+	}
+	err = f.Close()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.Remove(f.Name())
+	em := NewElementMap()
+	elem, err := ParseElementFromFile(f.Name(), em)
+	assert.NoError(t, err)
+	div := elem.Find("myDiv")
+	assert.NotNil(t, div)
+	assert.EqualValues(t, div.GetID(), em["myDiv"].GetID())
 }

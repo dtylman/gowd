@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"strings"
 
 	"golang.org/x/net/html"
@@ -69,4 +70,13 @@ func ParseElement(innerHTML string, em ElementsMap) (*Element, error) {
 		return nil, errors.New("The provided html must yield only one html element, I have: " + tags)
 	}
 	return elems[0], nil
+}
+
+//ParseElementFromFile like ParseElement, but reads input from a file
+func ParseElementFromFile(fileName string, em ElementsMap) (*Element, error) {
+	data, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		return nil, err
+	}
+	return ParseElement(string(data), em)
 }
